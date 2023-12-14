@@ -1,10 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
@@ -52,7 +48,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={DefaultTheme}>
       <GluestackUIProvider config={config}>
         <SafeAreaProvider>
           <Stack screenOptions={{ headerShown: false }}>

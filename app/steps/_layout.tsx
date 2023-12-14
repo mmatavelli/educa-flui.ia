@@ -1,8 +1,9 @@
-import { Image, MenuIcon, Pressable, Text } from '@gluestack-ui/themed';
+import { Image, MenuIcon, Text } from '@gluestack-ui/themed';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Stack } from 'expo-router';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { TouchableOpacity } from '../../components/TouchableOpacity';
 
 const schema = z.object({
   class: z.array(z.string()),
@@ -47,7 +48,7 @@ export default function StepLayout() {
             }
 
             return (
-              <Pressable
+              <TouchableOpacity
                 bgColor="#4CBBBB"
                 py="$1"
                 px="$4"
@@ -55,18 +56,18 @@ export default function StepLayout() {
                 onPress={() => navigation.goBack()}
               >
                 <Text color="$white">{label}</Text>
-              </Pressable>
+              </TouchableOpacity>
             );
           },
           headerRight: () => {
             return (
-              <Pressable
+              <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('modal');
                 }}
               >
                 <MenuIcon color="$primary500" size="xl" />
-              </Pressable>
+              </TouchableOpacity>
             );
           },
         })}

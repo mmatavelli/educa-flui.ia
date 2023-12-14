@@ -95,6 +95,7 @@ export default function ResultIA() {
           variant="outline"
           borderColor="$white"
           onPress={requestIAAnswer}
+          $active-borderColor="$primary300"
         >
           <ButtonText fontSize="$lg" color="$white">
             Fluir resultados por IA

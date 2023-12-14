@@ -195,7 +195,7 @@ export default function Three() {
         />
       </Box>
 
-      <Button bgColor="$white" onPress={handleNext}>
+      <Button bgColor="$white" onPress={handleNext} $active-bg="$primary50">
         <ButtonText fontSize="$lg" color="$primary500">
           Fluir
         </ButtonText>

@@ -10,12 +10,49 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { Linking } from 'react-native';
 import { FormData } from './_layout';
 
 type Response = {
   id: string;
   name: string;
 };
+
+function hyperLink(text: string) {
+  //create a hyper link in react native
+  const regex = /(https?:\/\/[^\s]+)/g;
+  const match = text.match(regex);
+  if (match) {
+    return text.split(regex).map((t, i) => {
+      if (match.includes(t)) {
+        return (
+          <Text
+            key={i}
+            color="$white"
+            fontSize="$lg"
+            textDecorationLine="underline"
+            onPress={() => Linking.openURL(t)}
+          >
+            {t}
+          </Text>
+        );
+      }
+      return (
+        <Text
+          key={i}
+          fontSize="$lg"
+          mb="$12"
+          fontWeight="$medium"
+          color="$white"
+          lineHeight="$xl"
+        >
+          {t}
+        </Text>
+      );
+    });
+  }
+  return text;
+}
 
 export default function Result() {
   const { push } = useRouter();
@@ -64,7 +101,7 @@ export default function Result() {
           color="$white"
           lineHeight="$xl"
         >
-          {data.name}
+          {hyperLink(data.name)}
         </Text>
       </ScrollView>
       <Box px="$6" pb="$6">
@@ -91,6 +128,7 @@ export default function Result() {
         <Button
           variant="outline"
           borderColor="$white"
+          $active-borderColor="$primary300"
           onPress={() => {
             push(`/steps/result-ia/${data.id}`);
           }}
